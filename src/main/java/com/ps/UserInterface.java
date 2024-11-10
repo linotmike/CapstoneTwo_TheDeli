@@ -1,6 +1,8 @@
 package com.ps;
 
 import com.ps.customClasses.Order;
+import com.ps.customClasses.enums.BreadType;
+import com.ps.customClasses.enums.Size;
 import com.ps.customClasses.sandwiches.Sandwich;
 
 import java.util.Scanner;
