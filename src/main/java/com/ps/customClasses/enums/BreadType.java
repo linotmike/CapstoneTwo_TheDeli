@@ -1,4 +1,8 @@
 package com.ps.customClasses.enums;
 
-public class BreadType {
+public enum BreadType {
+    WHITE,
+    WHEAT,
+    RYE,
+    WRAP;
 }
