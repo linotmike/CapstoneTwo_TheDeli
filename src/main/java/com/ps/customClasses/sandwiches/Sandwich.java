@@ -25,7 +25,9 @@ public class Sandwich implements Product {
     public void addTopping(Topping topping) {
         toppings.add(topping);
     }
-
+    public void removeTopping(Topping topping){
+        toppings.remove(topping);
+    }
 
     public boolean isToasted() {
         return isToasted;
