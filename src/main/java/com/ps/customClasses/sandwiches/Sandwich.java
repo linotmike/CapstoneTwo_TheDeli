@@ -15,13 +15,16 @@ public class Sandwich implements Product {
     private List<Topping> toppings;
     private boolean isToasted;
 
-    public Sandwich(Size size, BreadType breadType, Topping toppings, boolean isToasted) {
+    public Sandwich(Size size, BreadType breadType, boolean isToasted) {
         this.size = size;
         this.breadType = breadType;
         this.toppings = new ArrayList<>();
         this.isToasted = isToasted;
     }
 
+    public void addTopping(Topping topping) {
+        toppings.add(topping);
+    }
 
 
     public boolean isToasted() {
