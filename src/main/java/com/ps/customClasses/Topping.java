@@ -9,7 +9,7 @@ public class Topping implements Product {
     private double price;
     private ToppingType toppingType;
 
-    public Topping(String name, double price, Size size, ToppingType toppingType) {
+    public Topping( String name ,double price, Size size, ToppingType toppingType) {
         this.name = name;
         this.price = PriceCalculator.getToppingPrice(size, toppingType);
         this.toppingType = toppingType;
@@ -35,4 +35,6 @@ public class Topping implements Product {
     public double getPrice() {
         return price;
     }
+
+
 }

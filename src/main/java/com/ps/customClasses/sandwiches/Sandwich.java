@@ -10,12 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Sandwich implements Product {
+    private String name;
     private Size size;
     private BreadType breadType;
     private List<Topping> toppings;
     private boolean isToasted;
 
-    public Sandwich(Size size, BreadType breadType, boolean isToasted) {
+    public Sandwich(String name, Size size, BreadType breadType, boolean isToasted) {
+        this.name = name;
         this.size = size;
         this.breadType = breadType;
         this.toppings = new ArrayList<>();
@@ -27,6 +29,12 @@ public class Sandwich implements Product {
     }
     public void removeTopping(Topping topping){
         toppings.remove(topping);
+    }
+    private String getName(){
+        return name;
+    }
+    private void setName(String name){
+        this.name = name;
     }
 
     public boolean isToasted() {
@@ -60,6 +68,8 @@ public class Sandwich implements Product {
     public void setToppings(List<Topping> toppings) {
         this.toppings = toppings;
     }
+
+
 
     @Override
     public double getPrice() {
