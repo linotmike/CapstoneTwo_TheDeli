@@ -75,4 +75,15 @@ public class Sandwich implements Product {
     public double getPrice() {
         return 0;
     }
+
+    @Override
+    public String toString() {
+        return "Sandwich{" +
+                "name='" + name + '\'' +
+                ", size=" + size +
+                ", breadType=" + breadType +
+                ", toppings=" + toppings +
+                ", isToasted=" + isToasted +
+                '}';
+    }
 }
