@@ -87,6 +87,7 @@ public class UserInterface {
         boolean isToasted = inputScanner.nextLine().equalsIgnoreCase("Yes");
         Sandwich sandwich = new Sandwich(name,size,breadType,isToasted);
         addToppings(sandwich);
+        addSauce(sandwich);
         System.out.println("sandwich added successfully");
         System.out.print("Name " + name + " size " + size + " bread type " + breadType + isToasted + "Sandwich" + sandwich);
 
@@ -161,4 +162,22 @@ public class UserInterface {
 
         }
     }
+
+    private static void addSauce(Sandwich sandwich){
+        while(true){
+            System.out.println("Would you like to add sauce to your order? (yes/no)");
+            String response = inputScanner.nextLine();
+            if(!response.equalsIgnoreCase("yes")){
+                break;
+            }
+            System.out.println("choose your sauce(mayo,mustard,ketchup,ranch,thousand islands,vinaigrette)");
+            String sauce = inputScanner.nextLine();
+
+            Topping sideTopping = new Topping(sauce,0,null,ToppingType.VEGGIETOPPING);
+            sandwich.addTopping(sideTopping);
+            System.out.println("Added sauce: " + sauce);
+        }
+    }
+
+
 }
