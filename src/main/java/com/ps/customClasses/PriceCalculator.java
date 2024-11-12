@@ -57,5 +57,17 @@ public class PriceCalculator {
             return 0.0;
         }
     }
+    public static double getDrinkPrice(Size size){
+        switch (size){
+            case SMALL:
+                return 2.0;
+            case MEDIUM:
+                return 2.50;
+            case LARGE:
+                return 3.00;
+            default:
+                throw new IllegalArgumentException("Invalid size " + size);
+        }
 
+    }
 }

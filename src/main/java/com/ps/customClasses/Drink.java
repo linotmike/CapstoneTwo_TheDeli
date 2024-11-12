@@ -9,11 +9,11 @@ public class Drink implements Product{
   private String flavor;
   private double price;
 
-  public Drink(Size size, String type, String flavor, double price){
+  public Drink(Size size, String type, String flavor){
     this.size = size;
     this.type = type;
     this.flavor = flavor;
-    this.price = price;
+    this.price = PriceCalculator.getDrinkPrice(size);
   }
 
   public Size getSize(){
