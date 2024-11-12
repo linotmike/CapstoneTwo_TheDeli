@@ -85,9 +85,10 @@ public class UserInterface {
         Size size = Size.valueOf(sizeInput);
         System.out.println("Would you like your sandwich to be toasted? (Yes/No)");
         boolean isToasted = inputScanner.nextLine().equalsIgnoreCase("Yes");
-        Sandwich sandwich = new Sandwich(name,size,breadType,isToasted);
+        Sandwich sandwich = new Sandwich(name, size, breadType, isToasted);
         addToppings(sandwich);
         addSauce(sandwich);
+        addSide(sandwich);
         System.out.println("sandwich added successfully");
         System.out.print("Name " + name + " size " + size + " bread type " + breadType + isToasted + "Sandwich" + sandwich);
 
@@ -153,31 +154,45 @@ public class UserInterface {
             Topping topping;
             if (toppingType == ToppingType.MEAT || toppingType == ToppingType.CHEESE) {
                 topping = new Topping(toppingName, price, size, toppingType);
-                System.out.println("Added " + toppingName + " " + size + " " + "$"+price);
+                System.out.println("Added " + toppingName + " " + size + " " + "$" + price);
             } else {
                 topping = new Topping(toppingName, 0, null, toppingType);
                 System.out.println("Added " + toppingName);
             }
-                sandwich.addTopping(topping);
+            sandwich.addTopping(topping);
 
         }
     }
 
-    private static void addSauce(Sandwich sandwich){
-        while(true){
+    private static void addSauce(Sandwich sandwich) {
+        while (true) {
             System.out.println("Would you like to add sauce to your order? (yes/no)");
             String response = inputScanner.nextLine();
-            if(!response.equalsIgnoreCase("yes")){
+            if (!response.equalsIgnoreCase("yes")) {
                 break;
             }
             System.out.println("choose your sauce(mayo,mustard,ketchup,ranch,thousand islands,vinaigrette)");
             String sauce = inputScanner.nextLine();
 
-            Topping sideTopping = new Topping(sauce,0,null,ToppingType.VEGGIETOPPING);
+            Topping sideTopping = new Topping(sauce, 0, null, ToppingType.VEGGIETOPPING);
             sandwich.addTopping(sideTopping);
             System.out.println("Added sauce: " + sauce);
         }
     }
 
+    private static void addSide(Sandwich sandwich) {
+        while (true) {
+            System.out.println("Would you like to add sides to your order?(yes/no)");
+            String response = inputScanner.nextLine();
+            if (!response.equalsIgnoreCase("yes")) {
+                break;
+            }
+            System.out.println("choose your side (Au jus, sauce,fries)");
+            String side = inputScanner.nextLine();
+            Topping sideTopping = new Topping(side,0,null,ToppingType.VEGGIETOPPING);
+            sandwich.addTopping(sideTopping);
+            System.out.println("Added side: " + side);
 
+        }
+    }
 }
