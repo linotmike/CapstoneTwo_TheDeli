@@ -36,5 +36,12 @@ public class Topping implements Product {
         return price;
     }
 
-
+    @Override
+    public String toString() {
+        return "Topping{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                ", toppingType=" + toppingType +
+                '}';
+    }
 }
