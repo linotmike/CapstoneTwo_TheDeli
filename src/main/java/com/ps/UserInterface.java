@@ -52,7 +52,7 @@ public class UserInterface {
             orderScreenCommand = commandScanner.nextInt();
             switch (orderScreenCommand) {
                 case 1:
-                    //addSandwich();
+                    addSandwich();
                     break;
                 case 2:
                     //addDrink();
@@ -75,7 +75,20 @@ public class UserInterface {
     }
 
     private static void addSandwich() {
-
+        System.out.println("What is your name?");
+        String name = inputScanner.nextLine();
+        System.out.println("Select your bread (Wheat,White,Rye,Wrap)");
+        String bread = inputScanner.nextLine().toUpperCase();
+        BreadType breadType = BreadType.valueOf(bread);
+        System.out.println("Select the size of your sandwich small(4in), medium(8in), Large(12in)");
+        String sizeInput = inputScanner.nextLine().toUpperCase();
+        Size size = Size.valueOf(sizeInput);
+        System.out.println("Would you like your sandwich to be toasted? (Yes/No)");
+        boolean isToasted = inputScanner.nextLine().equalsIgnoreCase("Yes");
+        Sandwich sandwich = new Sandwich(name,size,breadType,isToasted);
+        addToppings(sandwich);
+        System.out.println("sandwich added successfully");
+        System.out.print("Name " + name + " size " + size + " bread type " + breadType + isToasted + "Sandwich" + sandwich);
 
     }
 
