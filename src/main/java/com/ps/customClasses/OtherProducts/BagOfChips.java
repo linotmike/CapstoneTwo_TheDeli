@@ -1,6 +1,8 @@
-package com.ps.customClasses;
+package com.ps.customClasses.OtherProducts;
 
-public class BagOfChips implements Product{
+import com.ps.customClasses.Product;
+
+public class BagOfChips implements Product {
 
     private String type;
     private static final double price = 1.50;

@@ -1,8 +1,10 @@
-package com.ps.customClasses;
+package com.ps.customClasses.OtherProducts;
 
+import com.ps.customClasses.Product;
 import com.ps.customClasses.enums.Size;
+import com.ps.customClasses.Helper.PriceCalculator;
 
-public class Drink implements Product{
+public class Drink implements Product {
 
   private Size size;
   private String type;

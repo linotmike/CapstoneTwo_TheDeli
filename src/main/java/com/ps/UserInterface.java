@@ -1,8 +1,9 @@
 package com.ps;
 
-import com.ps.customClasses.Drink;
+import com.ps.customClasses.OtherProducts.BagOfChips;
+import com.ps.customClasses.OtherProducts.Drink;
 import com.ps.customClasses.Order;
-import com.ps.customClasses.PriceCalculator;
+import com.ps.customClasses.Helper.PriceCalculator;
 import com.ps.customClasses.Topping;
 import com.ps.customClasses.enums.BreadType;
 import com.ps.customClasses.enums.Size;
@@ -59,7 +60,7 @@ public class UserInterface {
                     addDrink();
                     break;
                 case 3:
-                    //addChips();
+                    addChips();
                     break;
                 case 4:
                     //checkout();
@@ -113,6 +114,11 @@ public class UserInterface {
     }
 
     private static void addChips() {
+        System.out.println("What type of chips would you like? (Lays,Doritos,Kettles)");
+        String type = inputScanner.nextLine();
+
+        BagOfChips chips = new BagOfChips(type);
+        System.out.println("Added chips: " + type + " $" + chips.getPrice());
     }
 
     private static void checkout() {

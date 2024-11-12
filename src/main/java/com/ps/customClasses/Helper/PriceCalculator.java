@@ -1,4 +1,4 @@
-package com.ps.customClasses;
+package com.ps.customClasses.Helper;
 
 import com.ps.customClasses.enums.Size;
 import com.ps.customClasses.enums.ToppingType;
