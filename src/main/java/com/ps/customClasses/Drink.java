@@ -9,7 +9,7 @@ public class Drink implements Product{
   private String flavor;
   private double price;
 
-  public Drink(Size size, String type, String flavor){
+  public Drink(Size size, String type, String flavor,double price){
     this.size = size;
     this.type = type;
     this.flavor = flavor;

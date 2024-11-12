@@ -1,5 +1,6 @@
 package com.ps;
 
+import com.ps.customClasses.Drink;
 import com.ps.customClasses.Order;
 import com.ps.customClasses.PriceCalculator;
 import com.ps.customClasses.Topping;
@@ -55,7 +56,7 @@ public class UserInterface {
                     addSandwich();
                     break;
                 case 2:
-                    //addDrink();
+                    addDrink();
                     break;
                 case 3:
                     //addChips();
@@ -96,6 +97,19 @@ public class UserInterface {
     }
 
     private static void addDrink() {
+        System.out.println("Choose your drink size (Small ,Medium, Large)");
+        String drinkSize = inputScanner.nextLine().toUpperCase();
+        Size size = Size.valueOf(drinkSize);
+        System.out.println("What kind of drink would you like (Soda,Water,Juice)");
+        String type = inputScanner.nextLine();
+        System.out.println("What kind of flavor would you like (Coca,Sprite,pepsi)");
+        String flavor = inputScanner.nextLine();
+        double price = PriceCalculator.getDrinkPrice(size);
+
+        Drink drink = new Drink(size,type,flavor,price);
+        System.out.printf("Added %s %s (%s) - $%.2f%n", size, type, flavor, price);
+
+
     }
 
     private static void addChips() {
