@@ -38,10 +38,7 @@ public class Topping implements Product {
 
     @Override
     public String toString() {
-        return "Topping{" +
-                "name='" + name + '\'' +
-                ", price=" + price +
-                ", toppingType=" + toppingType +
-                '}';
+        return String.format("%s: $%.2f", name, price);
     }
+
 }

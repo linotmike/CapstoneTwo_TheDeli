@@ -78,12 +78,32 @@ public class Sandwich implements Product {
 
     @Override
     public String toString() {
-        return "Sandwich{" +
-                "name='" + name + '\'' +
-                ", size=" + size +
-                ", breadType=" + breadType +
-                ", toppings=" + toppings +
-                ", isToasted=" + isToasted +
-                '}';
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Sandwich Details:\n");
+        stringBuilder.append("Name: ").append(name).append("\n");
+        stringBuilder.append("Size: ").append(size).append("\n");
+        stringBuilder.append("BreadType: ").append(breadType).append("\n");
+        stringBuilder.append("Toasted: ").append(isToasted ? "Yes" : "No").append("\n");
+        stringBuilder.append("Added: \n");
+
+//        if(toppings.isEmpty()){
+//            stringBuilder.append("None");
+//        } else {
+//            toppings.forEach(topping -> stringBuilder.append(topping.getName()).append("," + "\n"));
+//            stringBuilder.setLength(stringBuilder.length()- 2);
+//        }
+
+        for (Topping topping: toppings){
+            stringBuilder.append(" - ").append(topping).append("\n");
+        }
+        return stringBuilder.toString();
+
+//        return "Sandwich{" +
+//                "name='" + name + '\'' +
+//                ", size=" + size +
+//                ", breadType=" + breadType +
+//                ", toppings=" + toppings +
+//                ", isToasted=" + isToasted +
+//                '}';
     }
 }
