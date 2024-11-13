@@ -18,6 +18,12 @@ public class Order {
         }
 
     }
+    public void addProducts(Product product){
+        products.add(product);
+    }
+    public void removeProduct(Product product){
+        products.remove(product);
+    }
 
     public List<Product> getProducts() {
         return products;
