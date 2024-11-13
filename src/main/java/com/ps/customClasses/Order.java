@@ -32,4 +32,14 @@ public class Order {
     public void setProducts(List<Product> products) {
         this.products = products;
     }
+
+    public double getTotalPrice() {
+        double totalPrice = 0;
+        for(Product product: products){
+            totalPrice += product.getPrice();
+        }
+        return totalPrice;
+    }
+
+
 }
