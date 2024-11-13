@@ -95,6 +95,7 @@ public class UserInterface {
         addSide(sandwich);
 
         order.addProducts(sandwich);
+
         System.out.println("sandwich added successfully");
 //        System.out.print("Name " + name + " size " + size + " bread type " + breadType + isToasted + "Sandwich" + sandwich);
         System.out.println(sandwich);

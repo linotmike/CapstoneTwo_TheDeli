@@ -1,10 +1,13 @@
 package com.ps.customClasses;
 
+import com.ps.DeliFileManager;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
     private List<Product> products;
+
 
     public Order(){
         this.products = new ArrayList<>();
@@ -33,6 +36,7 @@ public class Order {
         this.products = products;
     }
 
+
     public double getTotalPrice() {
         double totalPrice = 0;
         for(Product product: products){
@@ -41,5 +45,10 @@ public class Order {
         return totalPrice;
     }
 
-
+    @Override
+    public String toString() {
+        return "Order{" +
+                "products=" + products +
+                '}';
+    }
 }
