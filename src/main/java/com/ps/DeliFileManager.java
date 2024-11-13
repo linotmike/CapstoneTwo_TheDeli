@@ -24,7 +24,7 @@ public class DeliFileManager {
             String timeStamp = LocalDateTime.now().format(dateTimeFormatter);
             String customerName = customerName(order);
             if (!customerName.isEmpty()) {
-                bufferedWriter.write("----------------------------------------------------\n");
+                bufferedWriter.write("\n----------------------------------------------------\n");
                 bufferedWriter.write("\n" + customerName + "'s Order\n");
             }
             bufferedWriter.write("Order placed on: " + timeStamp + " \n");
@@ -70,11 +70,15 @@ public class DeliFileManager {
         if (product instanceof Sandwich) {
             Sandwich sandwich = (Sandwich) product;
             formmatedProduct.append("Sandwich|")
-                    .append(sandwich.getBreadType()).append("|")
-                    .append(sandwich.getSize()).append("|")
+                    .append(sandwich.getBreadType() != null ? sandwich.getBreadType() : "").append("|")
+                    .append(sandwich.getSize() != null ? sandwich.getSize() : "").append("|")
                     .append(String.format("$%.2f", price));
             for (Topping topping : sandwich.getToppings()) {
-                formmatedProduct.append(String.format(" \n-%s|%s|%s|$%.2f", topping.getName(), topping.getToppingType(),topping.getSize(), topping.getPrice()));
+                formmatedProduct.append(String.format(" \n-%s|%s|%s|$%.2f",
+                        topping.getName() != null ? topping.getName() : "",
+                        topping.getToppingType() != null ? topping.getToppingType() : "",
+                        topping.getSize() != null ? topping.getSize() : "" ,
+                        topping.getPrice()));
             }
 
 //            name = sandwich.getName();
@@ -83,9 +87,9 @@ public class DeliFileManager {
         } else if (product instanceof Drink) {
             Drink drink = (Drink) product;
             formmatedProduct.append("Drink|")
-                    .append("").append(drink.getType())
-                    .append("|").append(drink.getSize())
-                    .append("|").append(drink.getFlavor())
+                    .append("").append(drink.getType() != null ? drink.getType() : "")
+                    .append("|").append(drink.getSize() != null ? drink.getSize() : "")
+                    .append("|").append(drink.getFlavor() != null ? drink.getFlavor() : "")
                     .append("|").append(String.format("$%.2f", price));
 //            type = drink.getType();
 //            size = drink.getSize().toString();
@@ -93,7 +97,7 @@ public class DeliFileManager {
         } else if (product instanceof BagOfChips) {
             BagOfChips bagOfChips = (BagOfChips) product;
             formmatedProduct.append("Chips|")
-                    .append(bagOfChips.getType()).append("|")
+                    .append(bagOfChips.getType() != null ? bagOfChips.getType() : "").append("|")
                     .append(String.format("$%.2f", price));
 //            type = "Chips";
 //            name = bagOfChips.getType();

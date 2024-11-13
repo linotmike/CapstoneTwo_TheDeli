@@ -69,3 +69,20 @@ Chips|lays|$1.50
 Chips|kettles|$1.50
 ----------------------------------------------------
 Total Price: $15.50
+----------------------------------------------------
+
+lydia's Order
+Order placed on: 2024-11-13 12:53:24 
+Product|Type|Size|Flavor|Price
+Sandwich|WHITE|MEDIUM|$13.50 
+-ham|MEAT|MEDIUM|$2.00 
+-cheddar|CHEESE|MEDIUM|$1.50 
+-beef|MEAT|LARGE|$3.00 
+-mayo|VEGGIE||$0.00 
+-ranch|VEGGIE||$0.00 
+-fries|VEGGIE||$0.00
+Drink|soda|LARGE|sprite|$3.00
+Chips|lays|$1.50
+Chips|kettles|$1.50
+----------------------------------------------------
+Total Price: $19.50
