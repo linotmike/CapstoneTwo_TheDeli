@@ -49,4 +49,14 @@ public class Drink implements Product {
     public double getPrice() {
         return price;
     }
+
+  @Override
+  public String toString() {
+    return "Drink{" +
+            "size=" + size +
+            ", type='" + type + '\'' +
+            ", flavor='" + flavor + '\'' +
+            ", price=" + price +
+            '}';
+  }
 }

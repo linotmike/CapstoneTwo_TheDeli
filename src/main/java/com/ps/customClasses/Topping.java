@@ -8,12 +8,14 @@ public class Topping implements Product {
 
     private String name;
     private double price;
+    private Size size;
     private ToppingType toppingType;
 
     public Topping( String name ,double price, Size size, ToppingType toppingType) {
         this.name = name;
         this.price = PriceCalculator.getToppingPrice(size, toppingType);
         this.toppingType = toppingType;
+        this.size = size;
     }
 
     public String getName() {
@@ -30,6 +32,14 @@ public class Topping implements Product {
 
     public void setToppingType(ToppingType toppingType) {
         this.toppingType = toppingType;
+    }
+
+    public Size getSize() {
+        return size;
+    }
+
+    public void setSize(Size size) {
+        this.size = size;
     }
 
     @Override

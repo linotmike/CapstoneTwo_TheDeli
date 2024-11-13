@@ -1,27 +1,71 @@
-
-Order placed on: 2024-11-13 00:14:50 
+Order placed on: 2024-11-13 11:00:27 
 Product|Type|Size|Flavor|Price
-||||7.00
+lino|Sandwich|SMALL||7.25
+|soda|SMALL|sprite|2.00
+lays|Chips|||1.50
 ----------------------------------------------------
-Total Price: $.2f
-
-Order placed on: 2024-11-13 00:15:13 
+Total Price: $10.75
+lino's Order
+Order placed on: 2024-11-13 11:26:31 
 Product|Type|Size|Flavor|Price
-||||7.00
+lino|Sandwich|SMALL||6.50
+|soda|SMALL|coca|2.00
+lays|Chips|||1.50
 ----------------------------------------------------
-Total Price: $.2f
+Total Price: $10.00
 
-Order placed on: 2024-11-13 00:21:03 
+lino's Order
+Order placed on: 2024-11-13 11:51:59 
 Product|Type|Size|Flavor|Price
-||||7.00
+Sandwich|SMALL| |7.25
+soda|SMALL|sprite|2.00
+lays|chips|1.50
 ----------------------------------------------------
-Total Price: $.2f
+Total Price: $10.75
 
-Order placed on: 2024-11-13 00:25:12 
+lino's Order
+Order placed on: 2024-11-13 11:59:14 
 Product|Type|Size|Flavor|Price
-||||7.25
-||||2.00
-||||1.50
+Sandwich|SMALL|8.25
+Drink|soda|SMALL|sprite|2.00
+Chips|lays1.50
+Drink|water|MEDIUM|pepsi|2.50
 ----------------------------------------------------
-Total Price: $.2f
+Total Price: $14.25
+----------------------------------------------------
 
+lino's Order
+Order placed on: 2024-11-13 12:18:53 
+Product|Type|Size|Flavor|Price
+Sandwich|WHITE|SMALL|11.25 -steak|MEAT|1.00
+ -swiss|CHEESE|0.75
+ -steak|MEAT|1.00
+ -beef|MEAT|3.00
+ -guacamole|VEGGIE|0.00
+ -lettuce|VEGGIE|0.00
+ -ranch|VEGGIE|0.00
+ -mayo|VEGGIE|0.00
+ -fries|VEGGIE|0.00
+Drink|soda|SMALL|sprite|2.00
+Chips|lays|1.50
+----------------------------------------------------
+Total Price: $14.75
+----------------------------------------------------
+
+lino's Order
+Order placed on: 2024-11-13 12:32:56 
+Product|Type|Size|Flavor|Price
+Sandwich|WHEAT|SMALL|$10.50 
+-steak|MEAT|SMALL|$1.00 
+-beef|MEAT|SMALL|$1.00 
+-chicken|MEAT|LARGE|$3.00 
+-lettuce|VEGGIE|null|$0.00 
+-onions|VEGGIE|null|$0.00 
+-mayo|VEGGIE|null|$0.00 
+-ranch|VEGGIE|null|$0.00 
+-fries|VEGGIE|null|$0.00
+Drink|soda|SMALL|sprite|$2.00
+Chips|lays|$1.50
+Chips|kettles|$1.50
+----------------------------------------------------
+Total Price: $15.50

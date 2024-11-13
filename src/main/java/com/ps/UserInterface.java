@@ -96,7 +96,7 @@ public class UserInterface {
         addSauce(sandwich);
         addSide(sandwich);
 
-        order.addProducts(sandwich);
+        order.addProduct(sandwich);
 
         System.out.println("sandwich added successfully");
 //        System.out.print("Name " + name + " size " + size + " bread type " + breadType + isToasted + "Sandwich" + sandwich);
@@ -115,7 +115,7 @@ public class UserInterface {
         double price = PriceCalculator.getDrinkPrice(size);
 
         Drink drink = new Drink(size, type, flavor, price);
-        order.addProducts(drink);
+        order.addProduct(drink);
         System.out.printf("Added %s %s (%s) - $%.2f%n", size, type, flavor, price);
 
 
@@ -126,7 +126,7 @@ public class UserInterface {
         String type = inputScanner.nextLine();
 
         BagOfChips chips = new BagOfChips(type);
-        order.addProducts(chips);
+        order.addProduct(chips);
         System.out.println("Added chips: " + type + " $" + chips.getPrice());
     }
 
@@ -138,7 +138,7 @@ public class UserInterface {
         for (Product product : order.getProducts()) {
             System.out.println(product);
         }
-        System.out.println("Total price: $%.2f%n" + order.getTotalPrice());
+        System.out.println("Total price: $" + order.getTotalPrice());
         System.out.println("Would you like to checkout or cancel your order?");
         System.out.println("Checkout (yes) Cancel (No)");
         String response = inputScanner.nextLine();
@@ -188,7 +188,7 @@ public class UserInterface {
                     price = PriceCalculator.getToppingPrice(size, toppingType);
                     break;
                 case 3:
-                    toppingType = ToppingType.VEGGIETOPPING;
+                    toppingType = ToppingType.VEGGIE;
                     System.out.println("choose your veggies (Lettuce,peppers,onions,tomatoes,jalapenos,cucumbers,pickles,guacamole,mushrooms)");
                     toppingName = inputScanner.nextLine();
                     break;
@@ -228,7 +228,7 @@ public class UserInterface {
             System.out.println("choose your sauce(mayo,mustard,ketchup,ranch,thousand islands,vinaigrette)");
             String sauce = inputScanner.nextLine();
 
-            Topping sideTopping = new Topping(sauce, 0, null, ToppingType.VEGGIETOPPING);
+            Topping sideTopping = new Topping(sauce, 0, null, ToppingType.VEGGIE);
             sandwich.addTopping(sideTopping);
             System.out.println("Added sauce: " + sauce);
         }
@@ -243,7 +243,7 @@ public class UserInterface {
             }
             System.out.println("choose your side (Au jus, sauce,fries)");
             String side = inputScanner.nextLine();
-            Topping sideTopping = new Topping(side, 0, null, ToppingType.VEGGIETOPPING);
+            Topping sideTopping = new Topping(side, 0, null, ToppingType.VEGGIE);
             sandwich.addTopping(sideTopping);
             System.out.println("Added side: " + side);
 

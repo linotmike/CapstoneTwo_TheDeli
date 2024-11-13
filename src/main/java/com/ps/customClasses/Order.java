@@ -21,7 +21,7 @@ public class Order {
         }
 
     }
-    public void addProducts(Product product){
+    public void addProduct(Product product){
         products.add(product);
     }
     public void removeProduct(Product product){
@@ -47,8 +47,14 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{" +
-                "products=" + products +
-                '}';
+        StringBuilder stringBuilder  = new StringBuilder();
+        stringBuilder.append("order Details: \n");
+        stringBuilder.append("----------------------------\n");
+        for(Product product: products){
+            stringBuilder.append(" - ").append(product).append("\n");
+        }
+        stringBuilder.append("----------------------------\n");
+        stringBuilder.append(String.format("Total Price: %.2f", getTotalPrice()));
+        return stringBuilder.toString();
     }
 }

@@ -3,7 +3,7 @@ package com.ps.customClasses.enums;
 public enum ToppingType {
     MEAT(true),
     CHEESE(true),
-    VEGGIETOPPING(false);
+    VEGGIE(false);
 
     private final boolean isPremium;
 
