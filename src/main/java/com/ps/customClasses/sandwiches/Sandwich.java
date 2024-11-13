@@ -1,5 +1,6 @@
 package com.ps.customClasses.sandwiches;
 
+import com.ps.customClasses.Helper.PriceCalculator;
 import com.ps.customClasses.Product;
 import com.ps.customClasses.Topping;
 import com.ps.customClasses.enums.BreadType;
@@ -15,6 +16,7 @@ public class Sandwich implements Product {
     private BreadType breadType;
     private List<Topping> toppings;
     private boolean isToasted;
+    private double price;
 
     public Sandwich(String name, Size size, BreadType breadType, boolean isToasted) {
         this.name = name;
@@ -22,13 +24,16 @@ public class Sandwich implements Product {
         this.breadType = breadType;
         this.toppings = new ArrayList<>();
         this.isToasted = isToasted;
+        this.price = PriceCalculator.getBreadPrice(size);
     }
 
     public void addTopping(Topping topping) {
         toppings.add(topping);
+        this.price += topping.getPrice();
     }
     public void removeTopping(Topping topping){
         toppings.remove(topping);
+        this.price -= topping.getPrice();
     }
     private String getName(){
         return name;
@@ -73,7 +78,7 @@ public class Sandwich implements Product {
 
     @Override
     public double getPrice() {
-        return 0;
+        return price;
     }
 
     @Override
