@@ -23,7 +23,7 @@ public class DeliFileManager {
                 bufferedWriter.write(formatProduct(product) + "\n");
             }
                 bufferedWriter.write("----------------------------------------------------\n");
-                bufferedWriter.write(String.format("Total Price: $.2f%n",order.getTotalPrice()));
+                bufferedWriter.write(String.format("Total Price: $%.2f%n",order.getTotalPrice()));
                 bufferedWriter.write("\n");
 
 //            String firstLine = String.format("%s|")
@@ -47,6 +47,7 @@ public class DeliFileManager {
         String size = "";
         String flavor = "";
         double price = product.getPrice();
+
 
         return String.format("%s|%s|%s|%s|%.2f", name, type, size, flavor, price);
     }

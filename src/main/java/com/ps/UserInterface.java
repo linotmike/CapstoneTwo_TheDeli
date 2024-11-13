@@ -4,6 +4,7 @@ import com.ps.customClasses.OtherProducts.BagOfChips;
 import com.ps.customClasses.OtherProducts.Drink;
 import com.ps.customClasses.Order;
 import com.ps.customClasses.Helper.PriceCalculator;
+import com.ps.customClasses.Product;
 import com.ps.customClasses.Topping;
 import com.ps.customClasses.enums.BreadType;
 import com.ps.customClasses.enums.Size;
@@ -44,6 +45,7 @@ public class UserInterface {
     }
 
     private static void orderScreen() {
+        order = new Order();
         int orderScreenCommand;
         do {
             System.out.println("1) Add sandwich");
@@ -63,7 +65,7 @@ public class UserInterface {
                     addChips();
                     break;
                 case 4:
-                    //checkout();
+                    checkout();
                     break;
                 case 0:
                     System.out.println("You choose to cancel the order");
@@ -82,14 +84,14 @@ public class UserInterface {
         String name = inputScanner.nextLine();
         System.out.println("Select your bread (Wheat,White,Rye,Wrap)");
         String bread = inputScanner.nextLine().toUpperCase();
-         BreadType breadType = BreadType.valueOf(bread);
+        BreadType breadType = BreadType.valueOf(bread);
         System.out.println("Select the size of your sandwich small(4in), medium(8in), Large(12in)");
         String sizeInput = inputScanner.nextLine().toUpperCase();
         Size size = Size.valueOf(sizeInput);
         double price = PriceCalculator.getBreadPrice(size);
         System.out.println("Would you like your sandwich to be toasted? (Yes/No)");
         boolean isToasted = inputScanner.nextLine().equalsIgnoreCase("Yes");
-        Sandwich sandwich = new Sandwich(name, size, breadType, isToasted,price);
+        Sandwich sandwich = new Sandwich(name, size, breadType, isToasted, price);
         addToppings(sandwich);
         addSauce(sandwich);
         addSide(sandwich);
@@ -112,7 +114,7 @@ public class UserInterface {
         String flavor = inputScanner.nextLine();
         double price = PriceCalculator.getDrinkPrice(size);
 
-        Drink drink = new Drink(size,type,flavor,price);
+        Drink drink = new Drink(size, type, flavor, price);
         order.addProducts(drink);
         System.out.printf("Added %s %s (%s) - $%.2f%n", size, type, flavor, price);
 
@@ -129,6 +131,30 @@ public class UserInterface {
     }
 
     private static void checkout() {
+        if (order == null || order.getProducts().isEmpty()) {
+            System.out.println("No orders available");
+        }
+        System.out.println("Order Details: ");
+        for (Product product : order.getProducts()) {
+            System.out.println(product);
+        }
+        System.out.println("Total price: $%.2f%n" + order.getTotalPrice());
+        System.out.println("Would you like to checkout or cancel your order?");
+        System.out.println("Checkout (yes) Cancel (No)");
+        String response = inputScanner.nextLine();
+
+        if (response.equalsIgnoreCase("yes")) {
+            DeliFileManager.saveOrder(order);
+            System.out.println("order confirmed and receipt saved");
+            order = new Order();
+        } else if (response.equalsIgnoreCase("no")) {
+            order = new Order();
+            System.out.println("order is cancelled");
+        } else {
+            System.out.println("Invalid choice");
+        }
+
+
     }
 
     private static void addToppings(Sandwich sandwich) {
@@ -217,7 +243,7 @@ public class UserInterface {
             }
             System.out.println("choose your side (Au jus, sauce,fries)");
             String side = inputScanner.nextLine();
-            Topping sideTopping = new Topping(side,0,null,ToppingType.VEGGIETOPPING);
+            Topping sideTopping = new Topping(side, 0, null, ToppingType.VEGGIETOPPING);
             sandwich.addTopping(sideTopping);
             System.out.println("Added side: " + side);
 
