@@ -18,7 +18,7 @@ public class Sandwich implements Product {
     private boolean isToasted;
     private double price;
 
-    public Sandwich(String name, Size size, BreadType breadType, boolean isToasted) {
+    public Sandwich(String name, Size size, BreadType breadType, boolean isToasted,double price) {
         this.name = name;
         this.size = size;
         this.breadType = breadType;
@@ -35,10 +35,10 @@ public class Sandwich implements Product {
         toppings.remove(topping);
         this.price -= topping.getPrice();
     }
-    private String getName(){
+    public String getName(){
         return name;
     }
-    private void setName(String name){
+    public void setName(String name){
         this.name = name;
     }
 
@@ -87,6 +87,7 @@ public class Sandwich implements Product {
         stringBuilder.append("Sandwich Details:\n");
         stringBuilder.append("Name: ").append(name).append("\n");
         stringBuilder.append("Size: ").append(size).append("\n");
+        stringBuilder.append("Price: ").append(getPrice()).append("\n");
         stringBuilder.append("BreadType: ").append(breadType).append("\n");
         stringBuilder.append("Toasted: ").append(isToasted ? "Yes" : "No").append("\n");
         stringBuilder.append("Added: \n");

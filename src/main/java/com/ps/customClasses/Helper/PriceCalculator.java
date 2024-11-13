@@ -10,7 +10,7 @@ public class PriceCalculator {
             case SMALL:
                 return 5.50;
             case MEDIUM:
-                return 7.0;
+                return 7.00;
             case LARGE:
                 return 8.50;
             default:

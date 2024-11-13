@@ -16,7 +16,7 @@ public class UserInterface {
     private static Scanner commandScanner = new Scanner(System.in);
     private static Scanner inputScanner = new Scanner(System.in);
     private static Sandwich sandwich;
-    private static Order order = new Order();
+    private static Order order;
 
     public static void display() {
         init();
@@ -66,7 +66,7 @@ public class UserInterface {
                     //checkout();
                     break;
                 case 0:
-                    //cancelOrder();
+                    System.out.println("You choose to cancel the order");
                     break;
                 default:
                     System.out.println("Invalid command please try again");
@@ -77,17 +77,19 @@ public class UserInterface {
     }
 
     private static void addSandwich() {
+
         System.out.println("What is your name?");
         String name = inputScanner.nextLine();
         System.out.println("Select your bread (Wheat,White,Rye,Wrap)");
         String bread = inputScanner.nextLine().toUpperCase();
-        BreadType breadType = BreadType.valueOf(bread);
+         BreadType breadType = BreadType.valueOf(bread);
         System.out.println("Select the size of your sandwich small(4in), medium(8in), Large(12in)");
         String sizeInput = inputScanner.nextLine().toUpperCase();
         Size size = Size.valueOf(sizeInput);
+        double price = PriceCalculator.getBreadPrice(size);
         System.out.println("Would you like your sandwich to be toasted? (Yes/No)");
         boolean isToasted = inputScanner.nextLine().equalsIgnoreCase("Yes");
-        Sandwich sandwich = new Sandwich(name, size, breadType, isToasted);
+        Sandwich sandwich = new Sandwich(name, size, breadType, isToasted,price);
         addToppings(sandwich);
         addSauce(sandwich);
         addSide(sandwich);
