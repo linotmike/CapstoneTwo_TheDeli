@@ -93,6 +93,8 @@ public class UserInterface {
         addToppings(sandwich);
         addSauce(sandwich);
         addSide(sandwich);
+
+        order.addProducts(sandwich);
         System.out.println("sandwich added successfully");
 //        System.out.print("Name " + name + " size " + size + " bread type " + breadType + isToasted + "Sandwich" + sandwich);
         System.out.println(sandwich);
@@ -110,6 +112,7 @@ public class UserInterface {
         double price = PriceCalculator.getDrinkPrice(size);
 
         Drink drink = new Drink(size,type,flavor,price);
+        order.addProducts(drink);
         System.out.printf("Added %s %s (%s) - $%.2f%n", size, type, flavor, price);
 
 
@@ -120,6 +123,7 @@ public class UserInterface {
         String type = inputScanner.nextLine();
 
         BagOfChips chips = new BagOfChips(type);
+        order.addProducts(chips);
         System.out.println("Added chips: " + type + " $" + chips.getPrice());
     }
 
