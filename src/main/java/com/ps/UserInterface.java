@@ -27,12 +27,15 @@ public class UserInterface {
         int mainMenuCommand;
         do {
             System.out.println("1) New order");
+            System.out.println("2) View saved orders");
             System.out.println("0) Exit ");
             mainMenuCommand = commandScanner.nextInt();
             switch (mainMenuCommand) {
                 case 1:
                     orderScreen();
                     break;
+                case 2:
+                    savedOrder();
                 case 0:
                     System.out.println("Exiting");
                     break;
@@ -42,6 +45,18 @@ public class UserInterface {
         } while (mainMenuCommand != 0);
 
 
+    }
+    private static void savedOrder(){
+        Order savedOrder = DeliFileManager.readOrder();
+        if(savedOrder == null || savedOrder.getProducts().isEmpty()){
+            System.out.println("No saved orders");
+        } else {
+            System.out.println("Saved order Details");
+            for(Product product: savedOrder.getProducts()){
+                System.out.println(product);
+            }
+            System.out.println("Total Price: " + savedOrder.getTotalPrice());
+        }
     }
 
     private static void orderScreen() {
