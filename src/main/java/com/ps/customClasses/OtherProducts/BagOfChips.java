@@ -32,7 +32,7 @@ public class BagOfChips implements Product {
         return "Bag of Chips Details:\n" +
                 "-----------------------\n" +
                 String.format("  %-6s : '%s'\n", "Type", type) +
-                "-----------------------";
+                "\n-----------------------";
     }
 
 }

@@ -46,13 +46,14 @@ public class UserInterface {
 
 
     }
-    private static void savedOrder(){
+
+    private static void savedOrder() {
         Order savedOrder = DeliFileManager.readOrder();
-        if(savedOrder == null || savedOrder.getProducts().isEmpty()){
+        if (savedOrder == null || savedOrder.getProducts().isEmpty()) {
             System.out.println("No saved orders");
         } else {
             System.out.println("Saved order Details");
-            for(Product product: savedOrder.getProducts()){
+            for (Product product : savedOrder.getProducts()) {
                 System.out.println(product);
             }
             System.out.println("Total Price: " + savedOrder.getTotalPrice());
@@ -64,8 +65,8 @@ public class UserInterface {
         int orderScreenCommand;
         do {
             System.out.println("1) Add sandwich");
-            System.out.println("2) Add drink");
-            System.out.println("3) Add chips");
+            System.out.println("2) Add chips");
+            System.out.println("3) Add drink");
             System.out.println("4) Checkout");
             System.out.println("0) Cancel order");
             orderScreenCommand = commandScanner.nextInt();
@@ -74,10 +75,10 @@ public class UserInterface {
                     addSandwich();
                     break;
                 case 2:
-                    addDrink();
+                    addChips();
                     break;
                 case 3:
-                    addChips();
+                    addDrink();
                     break;
                 case 4:
                     checkout();
@@ -100,7 +101,7 @@ public class UserInterface {
         System.out.println("Select your bread (Wheat,White,Rye,Wrap)");
         String bread = inputScanner.nextLine().toUpperCase();
         BreadType breadType = BreadType.valueOf(bread);
-        System.out.println("Select the size of your sandwich small(4in), medium(8in), Large(12in)");
+        System.out.println("Select the size of your sandwich (small (4in) for $5.50 , medium (8in) for $7.00 , Large (12in) for $8.50) ");
         String sizeInput = inputScanner.nextLine().toUpperCase();
         Size size = Size.valueOf(sizeInput);
         double price = PriceCalculator.getBreadPrice(size);
@@ -108,8 +109,8 @@ public class UserInterface {
         boolean isToasted = inputScanner.nextLine().equalsIgnoreCase("Yes");
         Sandwich sandwich = new Sandwich(name, size, breadType, isToasted, price);
         addToppings(sandwich);
-        addSauce(sandwich);
         addSide(sandwich);
+        addSauce(sandwich);
 
         order.addProduct(sandwich);
 
@@ -120,29 +121,49 @@ public class UserInterface {
     }
 
     private static void addDrink() {
-        System.out.println("Choose your drink size (Small ,Medium, Large)");
+        System.out.println("You can add selections by using commas");
+        System.out.println("Choose your drink size (Small (for $2.00) ,Medium (for $2.50), Large (for $3.00 )");
         String drinkSize = inputScanner.nextLine().toUpperCase();
-        Size size = Size.valueOf(drinkSize);
+//        Size sizeInput = Size.valueOf(drinkSize);
         System.out.println("What kind of drink would you like (Soda,Water,Juice)");
-        String type = inputScanner.nextLine();
+        String typeInput = inputScanner.nextLine();
         System.out.println("What kind of flavor would you like (Coca,Sprite,pepsi)");
-        String flavor = inputScanner.nextLine();
-        double price = PriceCalculator.getDrinkPrice(size);
+        String flavorInput = inputScanner.nextLine();
+        String[] sizes = drinkSize.split(",");
+        String[] types = typeInput.split(",");
+        String[] flavors = flavorInput.split(",");
+        int drinkCount = Math.min(sizes.length, Math.min(types.length, flavors.length));
+        for (int i = 0; i < drinkCount; i++) {
+            try {
+                Size size = Size.valueOf(sizes[i].trim());
+                String type = types[i].trim();
+                String flavor = flavors[i].trim();
+                double price = PriceCalculator.getDrinkPrice(size);
 
-        Drink drink = new Drink(size, type, flavor, price);
-        order.addProduct(drink);
-        System.out.printf("Added %s %s (%s) - $%.2f%n", size, type, flavor, price);
+                Drink drink = new Drink(size, type, flavor, price);
+                order.addProduct(drink);
+                System.out.printf("Added %s %s (%s) - $%.2f%n", size, type, flavor, price);
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid entry please try again" + (i + 1));
+            }
+        }
 
 
     }
 
     private static void addChips() {
-        System.out.println("What type of chips would you like? (Lays,Doritos,Kettles)");
-        String type = inputScanner.nextLine();
+        System.out.println("You can add selections by using commas");
+        System.out.println("What type of chips would you like? (Lays,Doritos,Kettles) for $1.50 ");
+        String[] BagOfChips = inputScanner.nextLine().split(",");
+        for (String chips : BagOfChips) {
+            String chipsName = chips.trim();
 
-        BagOfChips chips = new BagOfChips(type);
-        order.addProduct(chips);
-        System.out.println("Added chips: " + type + " $" + chips.getPrice());
+            BagOfChips newChips = new BagOfChips(chipsName);
+            order.addProduct(newChips);
+            System.out.println("Added chips: " + chipsName + " $" + newChips.getPrice());
+
+        }
+
     }
 
     private static void checkout() {
@@ -181,31 +202,52 @@ public class UserInterface {
             System.out.println("Select a topping 1) Meat 2) Cheese 3) Veggie ");//4) sauce 5) sides//);
             int toppingChoice = Integer.parseInt(inputScanner.nextLine());
             ToppingType toppingType = null;
-            String toppingName = "";
+//            String toppingName = "";
             double price = 0;
             Size size = null;
             switch (toppingChoice) {
 //                toppingType = null;
                 case 1:
                     toppingType = ToppingType.MEAT;
-                    System.out.println("Choose Meat (Steak,Ham,salami,roast beef, chicken,bacon)");
-                    toppingName = inputScanner.nextLine();
-                    System.out.println("select size for the meat(Small,Medium,Large)");
-                    size = Size.valueOf(inputScanner.nextLine().toUpperCase());
-                    price = PriceCalculator.getToppingPrice(size, toppingType);
+                    System.out.println("You can add selections by using commas");
+                    System.out.println("Choose your Meat (Steak,Ham,salami,roast beef, chicken,bacon)");
+                    String[] meats = inputScanner.nextLine().split(",");
+                    for (String meat : meats) {
+                        String toppingName = meat.trim();
+                        System.out.println("select size for the " + toppingName + " (Small (for $1.00 ), Medium (for $2.00 ), Large(for $3.00 )");
+                        size = Size.valueOf(inputScanner.nextLine().toUpperCase());
+                        price = PriceCalculator.getToppingPrice(size, toppingType);
+                        Topping topping = new Topping(toppingName, price, size, toppingType);
+                        sandwich.addTopping(topping);
+                        System.out.println("Added " + toppingName + " " + size + " " + "$" + price);
+                    }
                     break;
                 case 2:
                     toppingType = ToppingType.CHEESE;
+                    System.out.println("You can add selections by using commas");
                     System.out.println("Choose cheese (american,provolone,cheddar,swiss)");
-                    toppingName = inputScanner.nextLine();
-                    System.out.println("select size for the cheese (Small,Medium,Large)");
-                    size = Size.valueOf(inputScanner.nextLine().toUpperCase());
-                    price = PriceCalculator.getToppingPrice(size, toppingType);
+                    String[] cheeses = inputScanner.nextLine().split(",");
+                    for (String cheese : cheeses) {
+                        String toppingName = cheese.trim();
+                        System.out.println("select size for the " + toppingName + " (Small (for $0.75 ), Medium (for $1.50 ), Large (for $2.25 )");
+                        size = Size.valueOf(inputScanner.nextLine().toUpperCase());
+                        price = PriceCalculator.getToppingPrice(size, toppingType);
+                        Topping topping = new Topping(toppingName, price, size, toppingType);
+                        sandwich.addTopping(topping);
+                        System.out.println("Added " + toppingName + " " + size + " " + "$" + price);
+                    }
                     break;
                 case 3:
                     toppingType = ToppingType.VEGGIE;
+                    System.out.println("You can add selections by using commas");
                     System.out.println("choose your veggies (Lettuce,peppers,onions,tomatoes,jalapenos,cucumbers,pickles,guacamole,mushrooms)");
-                    toppingName = inputScanner.nextLine();
+                    String[] veggies = inputScanner.nextLine().split(",");
+                    for (String veggie : veggies) {
+                        String toppingName = veggie.trim();
+                        Topping topping = new Topping(toppingName, price, size, toppingType);
+                        sandwich.addTopping(topping);
+                        System.out.println("Added " + toppingName);
+                    }
                     break;
 //                case 4:
 //                    System.out.println("choose sauce (Mayo,mustard,Ketchup,ranch,thousand islands,vinaigrette)");
@@ -220,18 +262,18 @@ public class UserInterface {
 
 
             }
-            Topping topping;
-            if (toppingType == ToppingType.MEAT || toppingType == ToppingType.CHEESE) {
-                topping = new Topping(toppingName, price, size, toppingType);
-                System.out.println("Added " + toppingName + " " + size + " " + "$" + price);
-            } else {
-                topping = new Topping(toppingName, 0, null, toppingType);
-                System.out.println("Added " + toppingName);
-            }
-            sandwich.addTopping(topping);
+//            Topping topping;
+//            if (toppingType == ToppingType.MEAT || toppingType == ToppingType.CHEESE) {
+//                topping = new Topping(toppingName, price, size, toppingType);
+//            } else {
+//                topping = new Topping(toppingName, 0, null, toppingType);
+//                System.out.println("Added " + toppingName);
+//            }
+//            sandwich.addTopping(topping);
 
         }
     }
+
 
     private static void addSauce(Sandwich sandwich) {
         while (true) {
@@ -240,12 +282,17 @@ public class UserInterface {
             if (!response.equalsIgnoreCase("yes")) {
                 break;
             }
+            System.out.println("You can add selections by using commas");
             System.out.println("choose your sauce(mayo,mustard,ketchup,ranch,thousand islands,vinaigrette)");
-            String sauce = inputScanner.nextLine();
+            String[] sauces = inputScanner.nextLine().split(",");
+            for (String sauce : sauces) {
+                String sauceName = sauce.trim();
+                Topping sideTopping = new Topping(sauceName, 0, null, ToppingType.VEGGIE);
+                sandwich.addTopping(sideTopping);
+                System.out.println("Added sauce: " + sauce);
 
-            Topping sideTopping = new Topping(sauce, 0, null, ToppingType.VEGGIE);
-            sandwich.addTopping(sideTopping);
-            System.out.println("Added sauce: " + sauce);
+            }
+
         }
     }
 
@@ -256,11 +303,15 @@ public class UserInterface {
             if (!response.equalsIgnoreCase("yes")) {
                 break;
             }
+            System.out.println("You can add selections by using commas");
             System.out.println("choose your side (Au jus, sauce,fries)");
-            String side = inputScanner.nextLine();
-            Topping sideTopping = new Topping(side, 0, null, ToppingType.VEGGIE);
-            sandwich.addTopping(sideTopping);
-            System.out.println("Added side: " + side);
+            String[] sides = inputScanner.nextLine().split(",");
+            for (String side : sides) {
+                String sideName = side.trim();
+                Topping sideTopping = new Topping(sideName, 0, null, ToppingType.VEGGIE);
+                sandwich.addTopping(sideTopping);
+                System.out.println("Added side: " + side);
+            }
 
         }
     }

@@ -87,11 +87,11 @@ public class Sandwich implements Product {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Sandwich Details:\n");
-        stringBuilder.append("------------------\n");
+        stringBuilder.append("-----------------------\n");
         stringBuilder.append("Name: ").append(name).append("\n");
-        stringBuilder.append("Size: ").append(size).append("\n");
+        stringBuilder.append("Sandwich Size: ").append(size).append("\n");
         stringBuilder.append("Price: ").append(getPrice()).append("\n");
-        stringBuilder.append("BreadType: ").append(breadType).append("\n");
+        stringBuilder.append("Bread Type: ").append(breadType).append("\n");
         stringBuilder.append("Toasted: ").append(isToasted ? "Yes" : "No").append("\n");
         stringBuilder.append("Added: \n");
 
@@ -105,7 +105,7 @@ public class Sandwich implements Product {
 //        for (Topping topping: toppings){
 //            stringBuilder.append(" - ").append(topping).append("\n");
 //        }
-        stringBuilder.append("\n------------------\n");
+        stringBuilder.append("-----------------------\n");
         return stringBuilder.toString();
 
 //        return "Sandwich{" +
