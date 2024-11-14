@@ -36,6 +36,7 @@ public class UserInterface {
                     break;
                 case 2:
                     savedOrder();
+                    break;
                 case 0:
                     System.out.println("Exiting");
                     break;
@@ -51,14 +52,9 @@ public class UserInterface {
         Order savedOrder = DeliFileManager.readOrder();
         if (savedOrder == null || savedOrder.getProducts().isEmpty()) {
             System.out.println("No saved orders");
-        } else {
-            System.out.println("Saved order Details");
-            for (Product product : savedOrder.getProducts()) {
-                System.out.println(product);
-            }
-            System.out.println("Total Price: " + savedOrder.getTotalPrice());
         }
     }
+
 
     private static void orderScreen() {
         order = new Order();

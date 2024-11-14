@@ -27,12 +27,12 @@ public class BagOfChips implements Product {
 
     }
 
+
+
     @Override
     public String toString() {
-        return "Bag of Chips Details:\n" +
-                "-----------------------\n" +
-                String.format("  %-6s : '%s'\n", "Type", type) +
-                "\n-----------------------";
+        return String.format("  %-8s : '%s'", "Type", type ,price );
     }
+
 
 }

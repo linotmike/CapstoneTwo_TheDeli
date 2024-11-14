@@ -27,7 +27,7 @@ public class DeliFileManager {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 line = line.trim();
-                if(line.endsWith("Order")){
+                if (line.endsWith("Order")) {
                     customerName = line.substring(0, line.indexOf("'s Order")).trim();
                     continue;
 
@@ -106,7 +106,8 @@ public class DeliFileManager {
             e.printStackTrace();
             System.out.println("Error reading the file");
         }
-        System.out.println("Order loaded: " + order);
+        System.out.println(order);
+//        order.printChipsList();
         return order;
     }
 
