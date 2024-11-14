@@ -17,6 +17,13 @@ public class Main {
 //
 //        DeliFileManager.saveOrder(order);
 //        System.out.println(order);
+        Order order = DeliFileManager.readOrder();
+        System.out.println("order details");
+        for (Product product: order.getProducts()){
+
+        System.out.println(product);
+        }
+
 
         UserInterface.display();
 //        DeliFileManager.saveOrder(order);

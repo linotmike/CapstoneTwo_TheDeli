@@ -23,11 +23,16 @@ public class BagOfChips implements Product {
     public double getPrice(){
         return price;
     }
+    public void setPrice(double price){
+
+    }
 
     @Override
     public String toString() {
-        return "BagOfChips{" +
-                "type='" + type + '\'' +
-                '}';
+        return "Bag of Chips Details:\n" +
+                "-----------------------\n" +
+                String.format("  %-6s : '%s'\n", "Type", type) +
+                "-----------------------";
     }
+
 }

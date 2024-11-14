@@ -52,11 +52,13 @@ public class Drink implements Product {
 
   @Override
   public String toString() {
-    return "Drink{" +
-            "size=" + size +
-            ", type='" + type + '\'' +
-            ", flavor='" + flavor + '\'' +
-            ", price=" + price +
-            '}';
+    return "Drink Details:\n" +
+            "-----------------\n" +
+            String.format("  %-8s: %s\n", "Size", size) +
+            String.format("  %-8s: '%s'\n", "Type", type) +
+            String.format("  %-8s: '%s'\n", "Flavor", flavor) +
+            String.format("  %-8s: $%.2f\n", "Price", price) +
+            "-----------------";
   }
+
 }
