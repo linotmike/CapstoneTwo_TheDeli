@@ -244,19 +244,24 @@ public class UserInterface {
         }
         System.out.println("Total price: $" + order.getTotalPrice());
         while (true) {
-            System.out.println("Would you like to checkout or cancel your order?");
-            System.out.println("Checkout (yes) Cancel (No)");
+            System.out.println("Would you like to checkout, cancel or edit your order?");
+            System.out.println("1) Checkout 2) Cancel 3) Edit");
             String response = inputScanner.nextLine();
 
-            if (response.equalsIgnoreCase("yes")) {
+            if (response.equals("1")) {
                 DeliFileManager.saveOrder(order);
                 System.out.println("order confirmed and receipt saved");
                 order = new Order();
                 break;
-            } else if (response.equalsIgnoreCase("no")) {
+            } else if (response.equals("2")) {
                 order = new Order();
                 System.out.println("order is cancelled");
                 break;
+            } else if (response.equals("3")) {
+                System.out.println("Returning to order screen");
+                orderScreen();
+                break;
+
             } else {
                 System.out.println("Invalid choice");
             }
