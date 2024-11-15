@@ -108,7 +108,43 @@ public class DeliFileManager {
         }
         System.out.println(order);
 //        order.printChipsList();
+        System.out.println("+====================================+");
+        System.out.println("|               RECEIPT              |");
+        System.out.println("|------------------------------------|");
 
+        for (Product product : order.getProducts()) {
+            if (product instanceof Sandwich) {
+                Sandwich sandwich = (Sandwich) product;
+                System.out.printf("| %-20s %-6s $%6.2f|\n",
+                        "Sandwich(" + sandwich.getBreadType() + ")",
+                        sandwich.getSize(),
+                        sandwich.getPrice());
+
+                for (Topping topping : sandwich.getToppings()) {
+                    String sizeDisplay = (topping.getSize() != null) ? topping.getSize().toString() : "N/A";
+                    System.out.printf("|   -  %-15s %-6s $%6.2f|\n",
+                            topping.getName(),
+                            sizeDisplay,
+                            topping.getPrice());
+                }
+            } else if (product instanceof Drink) {
+                Drink drink = (Drink) product;
+                System.out.printf("| %-20s %-6s $%6.2f|\n",
+                        "Drink(" + drink.getType() + ")",
+                        drink.getSize(),
+                        drink.getPrice());
+            } else if (product instanceof BagOfChips) {
+                BagOfChips chips = (BagOfChips) product;
+                System.out.printf("| %-20s %-6s $%6.2f|\n",
+                        "Chips(" + chips.getType() + ")",
+                        "N/A",
+                        chips.getPrice());
+            }
+        }
+
+        System.out.println("|------------------------------------|");
+        System.out.printf("|%-28s $%6.2f|\n", "Total Price:",order.getTotalPrice());
+        System.out.println("+====================================+");
         return order;
     }
 

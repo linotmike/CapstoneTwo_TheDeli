@@ -257,6 +257,11 @@ public class UserInterface {
             if (response.equals("1")) {
                 DeliFileManager.saveOrder(order);
                 System.out.println("order confirmed and receipt saved");
+                System.out.println("Would you like your receipt? 1)yes 2)No");
+                String recieptResponse = inputScanner.nextLine();
+                if(recieptResponse.equals("1")){
+                    DeliFileManager.readOrder();
+                }
                 order = new Order();
                 break;
             } else if (response.equals("2")) {
