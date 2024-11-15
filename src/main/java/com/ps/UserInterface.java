@@ -32,7 +32,7 @@ public class UserInterface {
             mainMenuCommand = commandScanner.nextInt();
             switch (mainMenuCommand) {
                 case 1:
-                    orderScreen();
+                    orderScreen(null);
                     break;
                 case 2:
                     savedOrder();
@@ -56,15 +56,16 @@ public class UserInterface {
     }
 
 
-    private static void orderScreen() {
-        order = new Order();
+    private static void orderScreen(Order exsistingOrder) {
+        order =(exsistingOrder != null) ? exsistingOrder :new Order();
         int orderScreenCommand;
         do {
             System.out.println("1) Add sandwich");
             System.out.println("2) Add chips");
             System.out.println("3) Add drink");
             System.out.println("4) Checkout");
-            System.out.println("0) Cancel order");
+            System.out.println("0) Main menu");
+            try{
             orderScreenCommand = commandScanner.nextInt();
             switch (orderScreenCommand) {
                 case 1:
@@ -80,14 +81,19 @@ public class UserInterface {
                     checkout();
                     break;
                 case 0:
-                    System.out.println("You choose to cancel the order");
+                    System.out.println("Welcome to The Deli");
+                    init();
                     break;
                 default:
                     System.out.println("Invalid command please try again");
 
             }
 
-        } while (orderScreenCommand != 0);
+            }catch(Exception e){
+                System.out.println("Invalid input try again");
+            }
+
+        } while (true);
     }
 
     private static void addSandwich() {
@@ -158,7 +164,7 @@ public class UserInterface {
         }
 //        Size sizeInput = Size.valueOf(drinkSize);
         while (true) {
-            System.out.println("What kind of drink would you like (Soda,Water,Juice)");
+            System.out.println("What kind of drink would you like for the (Soda,Water,Juice)");//drinkSize
             String typeInput = inputScanner.nextLine().trim();
             types = typeInput.split(",");
             boolean valid = true;
@@ -259,7 +265,7 @@ public class UserInterface {
                 break;
             } else if (response.equals("3")) {
                 System.out.println("Returning to order screen");
-                orderScreen();
+                orderScreen(order);
                 break;
 
             } else {
