@@ -28,6 +28,7 @@ public class UserInterface {
     public static void init() {
         int mainMenuCommand;
         do {
+            System.out.println("Welcome to The Deli Shop");
             System.out.println("1) New order");
             System.out.println("2) View saved orders");
             System.out.println("0) Exit ");
