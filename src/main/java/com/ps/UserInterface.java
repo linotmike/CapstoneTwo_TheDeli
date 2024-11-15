@@ -9,6 +9,8 @@ import com.ps.customClasses.Topping;
 import com.ps.customClasses.enums.BreadType;
 import com.ps.customClasses.enums.Size;
 import com.ps.customClasses.enums.ToppingType;
+import com.ps.customClasses.sandwiches.BltSandwich;
+import com.ps.customClasses.sandwiches.PhillyCheeseSteak;
 import com.ps.customClasses.sandwiches.Sandwich;
 
 import java.util.Scanner;
@@ -57,39 +59,43 @@ public class UserInterface {
 
 
     private static void orderScreen(Order exsistingOrder) {
-        order =(exsistingOrder != null) ? exsistingOrder :new Order();
+        order = (exsistingOrder != null) ? exsistingOrder : new Order();
         int orderScreenCommand;
         do {
             System.out.println("1) Add sandwich");
             System.out.println("2) Add chips");
             System.out.println("3) Add drink");
-            System.out.println("4) Checkout");
+            System.out.println("4) Add signature sandwich");
+            System.out.println("5) Checkout");
             System.out.println("0) Main menu");
-            try{
-            orderScreenCommand = commandScanner.nextInt();
-            switch (orderScreenCommand) {
-                case 1:
-                    addSandwich();
-                    break;
-                case 2:
-                    addChips();
-                    break;
-                case 3:
-                    addDrink();
-                    break;
-                case 4:
-                    checkout();
-                    break;
-                case 0:
-                    System.out.println("Welcome to The Deli");
-                    init();
-                    break;
-                default:
-                    System.out.println("Invalid command please try again");
+            try {
+                orderScreenCommand = commandScanner.nextInt();
+                switch (orderScreenCommand) {
+                    case 1:
+                        addSandwich();
+                        break;
+                    case 2:
+                        addChips();
+                        break;
+                    case 3:
+                        addDrink();
+                        break;
+                    case 4:
+                        addSignatureSandwich();
+                        break;
+                    case 5:
+                        checkout();
+                        break;
+                    case 0:
+                        System.out.println("Welcome to The Deli");
+                        init();
+                        break;
+                    default:
+                        System.out.println("Invalid command please try again");
 
-            }
+                }
 
-            }catch(Exception e){
+            } catch (Exception e) {
                 System.out.println("Invalid input try again");
             }
 
@@ -259,7 +265,7 @@ public class UserInterface {
                 System.out.println("order confirmed and receipt saved");
                 System.out.println("Would you like your receipt? 1)yes 2)No");
                 String recieptResponse = inputScanner.nextLine();
-                if(recieptResponse.equals("1")){
+                if (recieptResponse.equals("1")) {
                     DeliFileManager.readOrder();
                 }
                 order = new Order();
@@ -439,6 +445,31 @@ public class UserInterface {
                 System.out.println("Added side: " + side);
             }
 
+        }
+    }
+
+    private static void addSignatureSandwich() {
+        System.out.println("Choose a signature Sandwich");
+        System.out.println("1) BLT 2) Philly Cheese Steak 3) cancel");
+        String response = inputScanner.nextLine();
+        Sandwich sandwich = null;
+        switch (response) {
+            case "1":
+                sandwich = new BltSandwich();
+                break;
+            case "2":
+                sandwich = new PhillyCheeseSteak();
+                break;
+            case "3":
+                System.out.println("Going back to the order screen");
+                break;
+            default:
+                System.out.println("Invalid Selection");
+        }
+        if(sandwich != null){
+            order.addProduct(sandwich);
+            System.out.println("Added " + sandwich.getName() + " to your order");
+            System.out.println(sandwich);
         }
     }
 }

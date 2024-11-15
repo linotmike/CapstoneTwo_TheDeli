@@ -27,3 +27,36 @@ Chips|kettles|$1.50
 ----------------------------------------------------
 Total Price: $26.75
 
+
+----------------------------------------------------
+
+BLT's Order
+Order placed on: 2024-11-14 23:20:43 
+Product|Type|Size|Flavor|Price
+Sandwich|WHITE|MEDIUM|$10.50 
+-Bacon|MEAT|MEDIUM|$2.00 
+-Cheddar|CHEESE|MEDIUM|$1.50 
+-Lettuce|VEGGIE|N/A|$0.00 
+-Tomato|VEGGIE|N/A|$0.00 
+-Ranch|VEGGIE|N/A|$0.00
+Sandwich|WHITE|MEDIUM|$10.50 
+-Steak|MEAT|MEDIUM|$2.00 
+-American Cheese|CHEESE|MEDIUM|$1.50 
+-Peppers|VEGGIE|MEDIUM|$0.00 
+-Mayo|VEGGIE|N/A|$0.00
+----------------------------------------------------
+Total Price: $21.00
+
+----------------------------------------------------
+
+BLT's Order
+Order placed on: 2024-11-14 23:21:39 
+Product|Type|Size|Flavor|Price
+Sandwich|WHITE|MEDIUM|$10.50 
+-Bacon|MEAT|MEDIUM|$2.00 
+-Cheddar|CHEESE|MEDIUM|$1.50 
+-Lettuce|VEGGIE|N/A|$0.00 
+-Tomato|VEGGIE|N/A|$0.00 
+-Ranch|VEGGIE|N/A|$0.00
+----------------------------------------------------
+Total Price: $10.50
