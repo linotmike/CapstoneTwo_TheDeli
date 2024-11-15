@@ -26,24 +26,24 @@ To use this application:
 ## Screenshot
 
 ## Home Screen
-![Screenshot ](./src/demo/Home.png)
+![Screenshot ](./src/Demo/Home.png)
 ## Order Screen
-![Screenshot ](./src/demo/orderscreen.png)
+![Screenshot ](./src/Demo/orderscreen.png)
 ## Add Sandwich Screen
-![Screenshot ](./src/demo/sandwich.png)
-![Screenshot ](./src/demo/sandwiches.png)
+![Screenshot ](./src/Demo/sandwich.png)
+![Screenshot ](./src/Demo/sandwiches.png)
 ## Add Chips Screen
-![Screenshot ](./src/demo/chips.png)
+![Screenshot ](./src/Demo/chips.png)
 ## Add Drinks Screen
-![Screenshot ](./src/demo/drinks.png)
+![Screenshot ](./src/Demo/drinks.png)
 ## Add Signature Screen
-![Screenshot ](./src/demo/signature.png)
+![Screenshot ](./src/Demo/signature.png)
 ## Checkout Screen
-![Screenshot ](./src/demo/checkout.png)
+![Screenshot ](./src/Demo/checkout.png)
 ## View Receipt Screen
-![Screenshot ](./src/demo/receipt.png)
+![Screenshot ](./src/Demo/receipt.png)
 ## View Saved order screen
-![Screenshot ](./src/demo/savedorder.png)
+![Screenshot ](./src/Demo/savedorder.png)
 
 
 
