@@ -138,6 +138,15 @@ public class UserInterface {
         boolean isToasted = inputScanner.nextLine().equalsIgnoreCase("Yes");
         Sandwich sandwich = new Sandwich(name, size, breadType, isToasted, price);
         addToppings(sandwich);
+        while (true) {
+            System.out.println("Would you like to add extra meat or cheese to your sandwich? (Yes/No)");
+            String response = inputScanner.nextLine();
+            if (response.equalsIgnoreCase("yes")) {
+                addExtra(sandwich);
+            } else {
+                break;
+            }
+        }
         addSide(sandwich);
         addSauce(sandwich);
 
@@ -169,8 +178,9 @@ public class UserInterface {
             if (valid) break;
         }
 //        Size sizeInput = Size.valueOf(drinkSize);
+        String selectedSize = String.join(", ", sizes);
         while (true) {
-            System.out.println("What kind of drink would you like for the (Soda,Water,Juice)");//drinkSize
+            System.out.println("What kind of drink would you like for the " + selectedSize + " drink " + " (Soda,Water,Juice)");//drinkSize
             String typeInput = inputScanner.nextLine().trim();
             types = typeInput.split(",");
             boolean valid = true;
@@ -466,10 +476,97 @@ public class UserInterface {
             default:
                 System.out.println("Invalid Selection");
         }
-        if(sandwich != null){
+        if (sandwich != null) {
             order.addProduct(sandwich);
             System.out.println("Added " + sandwich.getName() + " to your order");
             System.out.println(sandwich);
         }
     }
+    private static void addExtra(Sandwich sandwich) {
+        System.out.println("Select a topping to add extra: 1) Meat 2) Cheese 3) cancel");
+        int toppingChoice;
+        try {
+            toppingChoice = Integer.parseInt(inputScanner.nextLine().trim());
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input. Please enter a number (1, 2, or 3).");
+            return;
+        }
+
+        ToppingType toppingType;
+        double extraPrice = 0;
+
+        switch (toppingChoice) {
+            case 1: // Extra Meat
+                toppingType = ToppingType.MEAT;
+                System.out.println("Choose your Extra Meat (Steak, Ham, Salami, Roast Beef, Chicken, Bacon):");
+                String meat = inputScanner.nextLine().trim();
+                if (meat.isEmpty()) {
+                    System.out.println("Meat selection cannot be empty.");
+                    return;
+                }
+                System.out.println("Select size for extra meat (Small (for $0.50 ), Medium (for $1.00 ), Large (for $1.50 )");
+                Size extraSize;
+                try {
+                    extraSize = Size.valueOf(inputScanner.nextLine().trim().toUpperCase());
+                    switch (extraSize) {
+                        case SMALL:
+                            extraPrice = 0.50;
+                            break;
+                        case MEDIUM:
+                            extraPrice = 1.00;
+                            break;
+                        case LARGE:
+                            extraPrice = 1.50;
+                            break;
+                    }
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Invalid size. Please try again.");
+                    return;
+                }
+                Topping extraMeat = new Topping(meat, extraPrice, extraSize, toppingType);
+                sandwich.addTopping(extraMeat);
+                System.out.printf("Added extra %s (%s) - $%.2f%n", meat, extraSize, extraPrice);
+                break;
+
+            case 2: // Extra Cheese
+                toppingType = ToppingType.CHEESE;
+                System.out.println("Choose your Extra Cheese (American, Provolone, Cheddar, Swiss):");
+                String cheese = inputScanner.nextLine().trim();
+                if (cheese.isEmpty()) {
+                    System.out.println("Cheese selection cannot be empty.");
+                    return;
+                }
+                System.out.println("Select size for extra cheese (Small (for $0.30 ), Medium (for $0.60 ), Large (for $0.90 )");
+                try {
+                    extraSize = Size.valueOf(inputScanner.nextLine().trim().toUpperCase());
+                    switch (extraSize) {
+                        case SMALL:
+                            extraPrice = 0.30;
+                            break;
+                        case MEDIUM:
+                            extraPrice = 0.60;
+                            break;
+                        case LARGE:
+                            extraPrice = 0.90;
+                            break;
+                    }
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Invalid size. Please try again.");
+                    return;
+                }
+                Topping extraCheese = new Topping(cheese, extraPrice, extraSize, toppingType);
+                sandwich.addTopping(extraCheese);
+                System.out.printf("Added extra %s (%s) - $%.2f%n", cheese, extraSize, extraPrice);
+                break;
+
+            case 3:
+                System.out.println("Finished adding extras.");
+                break;
+
+            default:
+                System.out.println("Invalid choice. Please try again.");
+        }
+    }
+
+
 }

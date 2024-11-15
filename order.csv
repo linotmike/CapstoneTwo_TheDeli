@@ -1,62 +1,30 @@
 
 ----------------------------------------------------
 
-Birhanu's Order
-Order placed on: 2024-11-14 20:19:23 
+birhanu's Order
+Order placed on: 2024-11-15 00:26:24 
 Product|Type|Size|Flavor|Price
-Sandwich|WHEAT|SMALL|$17.25 
--steak|MEAT|SMALL|$1.00 
--ham|MEAT|MEDIUM|$2.00 
--salami|MEAT|LARGE|$3.00 
+Sandwich|WHITE|SMALL|$14.75 
+-steak|MEAT|LARGE|$3.00 
+-ham|MEAT|SMALL|$1.00 
 -beef|MEAT|MEDIUM|$2.00 
--american|CHEESE|SMALL|$0.75 
 -swiss|CHEESE|LARGE|$2.25 
--cheddar|CHEESE|SMALL|$0.75 
+-pepers|VEGGIE|N/A|$0.00 
 -lettuce|VEGGIE|N/A|$0.00 
--peppers|VEGGIE|N/A|$0.00 
 -onions|VEGGIE|N/A|$0.00 
+-steak|MEAT|SMALL|$1.00 
 -fries|VEGGIE|N/A|$0.00 
 -sauce|VEGGIE|N/A|$0.00 
 -mayo|VEGGIE|N/A|$0.00 
--ranch|VEGGIE|N/A|$0.00
+-ranch|VEGGIE|N/A|$0.00 
+-ketchup|VEGGIE|N/A|$0.00
 Chips|lays|$1.50
 Chips|doritos|$1.50
-Drinks|soda|SMALL|sprite|$2.00
-Drinks|juice|LARGE|orange juice|$3.00
-Chips|kettles|$1.50
-----------------------------------------------------
-Total Price: $26.75
-
-
-----------------------------------------------------
-
-BLT's Order
-Order placed on: 2024-11-14 23:20:43 
-Product|Type|Size|Flavor|Price
-Sandwich|WHITE|MEDIUM|$10.50 
--Bacon|MEAT|MEDIUM|$2.00 
--Cheddar|CHEESE|MEDIUM|$1.50 
--Lettuce|VEGGIE|N/A|$0.00 
--Tomato|VEGGIE|N/A|$0.00 
--Ranch|VEGGIE|N/A|$0.00
 Sandwich|WHITE|MEDIUM|$10.50 
 -Steak|MEAT|MEDIUM|$2.00 
 -American Cheese|CHEESE|MEDIUM|$1.50 
 -Peppers|VEGGIE|MEDIUM|$0.00 
 -Mayo|VEGGIE|N/A|$0.00
+Drinks|soda|SMALL|coca orange juice|$2.00
 ----------------------------------------------------
-Total Price: $21.00
-
-----------------------------------------------------
-
-BLT's Order
-Order placed on: 2024-11-14 23:21:39 
-Product|Type|Size|Flavor|Price
-Sandwich|WHITE|MEDIUM|$10.50 
--Bacon|MEAT|MEDIUM|$2.00 
--Cheddar|CHEESE|MEDIUM|$1.50 
--Lettuce|VEGGIE|N/A|$0.00 
--Tomato|VEGGIE|N/A|$0.00 
--Ranch|VEGGIE|N/A|$0.00
-----------------------------------------------------
-Total Price: $10.50
+Total Price: $30.25
