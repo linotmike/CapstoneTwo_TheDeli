@@ -91,15 +91,36 @@ public class UserInterface {
     }
 
     private static void addSandwich() {
+        String name;
+        do {
+            System.out.println("What is your name?");
+            name = inputScanner.nextLine();
+            if (name.isEmpty()) {
+                System.out.println("Name cannot be empty. please enter your name");
+            }
+        } while (name.isEmpty());
+        BreadType breadType = null;
+        while (breadType == null) {
+            try {
+                System.out.println("Select your bread (Wheat,White,Rye,Wrap)");
+                String bread = inputScanner.nextLine().toUpperCase();
+                breadType = BreadType.valueOf(bread);
 
-        System.out.println("What is your name?");
-        String name = inputScanner.nextLine();
-        System.out.println("Select your bread (Wheat,White,Rye,Wrap)");
-        String bread = inputScanner.nextLine().toUpperCase();
-        BreadType breadType = BreadType.valueOf(bread);
-        System.out.println("Select the size of your sandwich (small (4in) for $5.50 , medium (8in) for $7.00 , Large (12in) for $8.50) ");
-        String sizeInput = inputScanner.nextLine().toUpperCase();
-        Size size = Size.valueOf(sizeInput);
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid bread option. please enter a valid option");
+            }
+        }
+        Size size = null;
+        while (size == null) {
+            try {
+                System.out.println("Select the size of your sandwich (small (4in) for $5.50 , medium (8in) for $7.00 , Large (12in) for $8.50) ");
+                String sizeInput = inputScanner.nextLine().toUpperCase();
+                size = Size.valueOf(sizeInput);
+
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid size option. please enter a valid option");
+            }
+        }
         double price = PriceCalculator.getBreadPrice(size);
         System.out.println("Would you like your sandwich to be toasted? (Yes/No)");
         boolean isToasted = inputScanner.nextLine().equalsIgnoreCase("Yes");
@@ -118,16 +139,53 @@ public class UserInterface {
 
     private static void addDrink() {
         System.out.println("You can add selections by using commas");
-        System.out.println("Choose your drink size (Small (for $2.00) ,Medium (for $2.50), Large (for $3.00 )");
-        String drinkSize = inputScanner.nextLine().toUpperCase();
+        String[] sizes, types, flavors;
+        while (true) {
+            System.out.println("Choose your drink size (Small (for $2.00) ,Medium (for $2.50), Large (for $3.00 )");
+            String drinkSize = inputScanner.nextLine().toUpperCase();
+            sizes = drinkSize.split(",");
+            boolean valid = true;
+            for (String size : sizes) {
+                try {
+                    Size.valueOf(size.trim());
+                } catch (IllegalArgumentException e) {
+                    valid = false;
+                    System.out.println("Invalid size: " + size.trim() + " Please try again");
+                    break;
+                }
+            }
+            if (valid) break;
+        }
 //        Size sizeInput = Size.valueOf(drinkSize);
-        System.out.println("What kind of drink would you like (Soda,Water,Juice)");
-        String typeInput = inputScanner.nextLine();
-        System.out.println("What kind of flavor would you like (Coca,Sprite,pepsi)");
-        String flavorInput = inputScanner.nextLine();
-        String[] sizes = drinkSize.split(",");
-        String[] types = typeInput.split(",");
-        String[] flavors = flavorInput.split(",");
+        while (true) {
+            System.out.println("What kind of drink would you like (Soda,Water,Juice)");
+            String typeInput = inputScanner.nextLine().trim();
+            types = typeInput.split(",");
+            boolean valid = true;
+            for (String type : types) {
+                if (type.trim().isEmpty()) {
+                    valid = false;
+                    System.out.println("Drink cannot be empty. Please enter a valid drink types");
+                    break;
+                }
+
+            }
+            if (valid) break;
+        }
+        while (true) {
+            System.out.println("What kind of flavor would you like (Coca,Sprite,pepsi)");
+            String flavorInput = inputScanner.nextLine().trim();
+            flavors = flavorInput.split(",");
+            boolean valid = true;
+            for (String flavor : flavors) {
+                if (flavor.isEmpty()) {
+                    valid = false;
+                    System.out.println("Flavor cannot be empty. Please enter a valid drink types");
+                    break;
+                }
+            }
+            if (valid) break;
+        }
         int drinkCount = Math.min(sizes.length, Math.min(types.length, flavors.length));
         for (int i = 0; i < drinkCount; i++) {
             try {
@@ -150,40 +208,59 @@ public class UserInterface {
     private static void addChips() {
         System.out.println("You can add selections by using commas");
         System.out.println("What type of chips would you like? (Lays,Doritos,Kettles) for $1.50 ");
-        String[] BagOfChips = inputScanner.nextLine().split(",");
-        for (String chips : BagOfChips) {
-            String chipsName = chips.trim();
+        boolean valid;
+        do {
+            valid = true;
+            String[] BagOfChips = inputScanner.nextLine().split(",");
+            for (String chips : BagOfChips) {
+                String chipsName = chips.trim();
+                if (chips.isEmpty()) {
+                    valid = false;
+                    System.out.println("chips cannot be empty. Please try again");
+                    System.out.println("What type of chips would you like? (Lays,Doritos,Kettles) for $1.50 ");
+                    break;
+                } else {
+                    BagOfChips newChips = new BagOfChips(chipsName);
+                    order.addProduct(newChips);
+                    System.out.println("Added chips: " + chipsName + " $" + newChips.getPrice());
 
-            BagOfChips newChips = new BagOfChips(chipsName);
-            order.addProduct(newChips);
-            System.out.println("Added chips: " + chipsName + " $" + newChips.getPrice());
+                }
 
-        }
+
+            }
+        } while (!valid);
+
 
     }
 
     private static void checkout() {
         if (order == null || order.getProducts().isEmpty()) {
             System.out.println("No orders available");
+            return;
         }
         System.out.println("Order Details: ");
         for (Product product : order.getProducts()) {
             System.out.println(product);
         }
         System.out.println("Total price: $" + order.getTotalPrice());
-        System.out.println("Would you like to checkout or cancel your order?");
-        System.out.println("Checkout (yes) Cancel (No)");
-        String response = inputScanner.nextLine();
+        while (true) {
+            System.out.println("Would you like to checkout or cancel your order?");
+            System.out.println("Checkout (yes) Cancel (No)");
+            String response = inputScanner.nextLine();
 
-        if (response.equalsIgnoreCase("yes")) {
-            DeliFileManager.saveOrder(order);
-            System.out.println("order confirmed and receipt saved");
-            order = new Order();
-        } else if (response.equalsIgnoreCase("no")) {
-            order = new Order();
-            System.out.println("order is cancelled");
-        } else {
-            System.out.println("Invalid choice");
+            if (response.equalsIgnoreCase("yes")) {
+                DeliFileManager.saveOrder(order);
+                System.out.println("order confirmed and receipt saved");
+                order = new Order();
+                break;
+            } else if (response.equalsIgnoreCase("no")) {
+                order = new Order();
+                System.out.println("order is cancelled");
+                break;
+            } else {
+                System.out.println("Invalid choice");
+            }
+
         }
 
 
@@ -196,7 +273,13 @@ public class UserInterface {
             if (!response.equalsIgnoreCase("yes"))
                 break;
             System.out.println("Select a topping 1) Meat 2) Cheese 3) Veggie ");//4) sauce 5) sides//);
-            int toppingChoice = Integer.parseInt(inputScanner.nextLine());
+            int toppingChoice;
+            try {
+                toppingChoice = Integer.parseInt(inputScanner.nextLine().trim());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a number (1, 2, or 3).");
+                continue;
+            }
             ToppingType toppingType = null;
 //            String toppingName = "";
             double price = 0;
@@ -210,12 +293,21 @@ public class UserInterface {
                     String[] meats = inputScanner.nextLine().split(",");
                     for (String meat : meats) {
                         String toppingName = meat.trim();
+                        if (toppingName.isEmpty()) {
+                            System.out.println("Meat selection cannot be empty try again");
+                            continue;
+                        }
                         System.out.println("select size for the " + toppingName + " (Small (for $1.00 ), Medium (for $2.00 ), Large(for $3.00 )");
-                        size = Size.valueOf(inputScanner.nextLine().toUpperCase());
-                        price = PriceCalculator.getToppingPrice(size, toppingType);
-                        Topping topping = new Topping(toppingName, price, size, toppingType);
-                        sandwich.addTopping(topping);
-                        System.out.println("Added " + toppingName + " " + size + " " + "$" + price);
+                        try {
+                            size = Size.valueOf(inputScanner.nextLine().toUpperCase());
+                            price = PriceCalculator.getToppingPrice(size, toppingType);
+                            Topping topping = new Topping(toppingName, price, size, toppingType);
+                            sandwich.addTopping(topping);
+                            System.out.println("Added " + toppingName + " " + size + " " + "$" + price);
+
+                        } catch (IllegalArgumentException e) {
+                            System.out.println("Invalid size. please try again");
+                        }
                     }
                     break;
                 case 2:
@@ -225,12 +317,22 @@ public class UserInterface {
                     String[] cheeses = inputScanner.nextLine().split(",");
                     for (String cheese : cheeses) {
                         String toppingName = cheese.trim();
+                        if (toppingName.isEmpty()) {
+                            System.out.println("cheese selection cannot be empty try again");
+                            continue;
+                        }
                         System.out.println("select size for the " + toppingName + " (Small (for $0.75 ), Medium (for $1.50 ), Large (for $2.25 )");
-                        size = Size.valueOf(inputScanner.nextLine().toUpperCase());
-                        price = PriceCalculator.getToppingPrice(size, toppingType);
-                        Topping topping = new Topping(toppingName, price, size, toppingType);
-                        sandwich.addTopping(topping);
-                        System.out.println("Added " + toppingName + " " + size + " " + "$" + price);
+                        try {
+                            size = Size.valueOf(inputScanner.nextLine().toUpperCase());
+                            price = PriceCalculator.getToppingPrice(size, toppingType);
+                            Topping topping = new Topping(toppingName, price, size, toppingType);
+                            sandwich.addTopping(topping);
+                            System.out.println("Added " + toppingName + " " + size + " " + "$" + price);
+
+                        } catch (IllegalArgumentException e) {
+                            System.out.println("Invalid size. please try again");
+                        }
+
                     }
                     break;
                 case 3:
@@ -240,6 +342,10 @@ public class UserInterface {
                     String[] veggies = inputScanner.nextLine().split(",");
                     for (String veggie : veggies) {
                         String toppingName = veggie.trim();
+                        if (toppingName.isEmpty()) {
+                            System.out.println("veggie selection cannot be empty try again");
+                            continue;
+                        }
                         Topping topping = new Topping(toppingName, price, size, toppingType);
                         sandwich.addTopping(topping);
                         System.out.println("Added " + toppingName);
@@ -283,6 +389,10 @@ public class UserInterface {
             String[] sauces = inputScanner.nextLine().split(",");
             for (String sauce : sauces) {
                 String sauceName = sauce.trim();
+                if (sauceName.isEmpty()) {
+                    System.out.println("Sauce cannot be empty. Please try again.");
+                    continue;
+                }
                 Topping sideTopping = new Topping(sauceName, 0, null, ToppingType.VEGGIE);
                 sandwich.addTopping(sideTopping);
                 System.out.println("Added sauce: " + sauce);
@@ -304,6 +414,10 @@ public class UserInterface {
             String[] sides = inputScanner.nextLine().split(",");
             for (String side : sides) {
                 String sideName = side.trim();
+                if (sideName.isEmpty()) {
+                    System.out.println("Side cannot be empty. Please try again.");
+                    continue;
+                }
                 Topping sideTopping = new Topping(sideName, 0, null, ToppingType.VEGGIE);
                 sandwich.addTopping(sideTopping);
                 System.out.println("Added side: " + side);
